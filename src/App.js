@@ -721,7 +721,7 @@ function ClienteResumen({ pedido, onBack, onProceder }) {
 function App() {
   const [screen, setScreen] = useState('login');
   const [pedido, setPedido] = useState(null);
-  const [_history, setHistory] = useState([]);
+  const [, setHistory] = useState([]);
   const [showInfoCocinero, setShowInfoCocinero] = useState(false);
   const [showInfoGerente, setShowInfoGerente] = useState(false);
 
