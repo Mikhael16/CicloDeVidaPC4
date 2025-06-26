@@ -3,7 +3,7 @@ import './App.css';
 import fondo from './assets/img/imagenfondoprimerapantalla.jpg';
 import qr from './assets/img/qr-code-logo-png_seeklogo-217342.png';
 import cuyImg from './assets/img/cuy.png';
-import cecinasImg from './assets/img/tacacho-con-cecina.jpg'; // No hay imagen de cecinas, se usa el QR temporalmente
+import cecinasImg from './assets/img/tacacho-con-cecina.jpg';
 import pancetaImg from './assets/img/panceta.jpg';
 import cabritoImg from './assets/img/cabrito.jpg';
 import pepiangallinaImg from './assets/img/pepiangallina.jpg';
@@ -501,18 +501,12 @@ function Cliente({ goBack }) {
 
 function ClienteMenu({ onBack, onFinalizar }) {
   const [carrito, setCarrito] = useState([]);
-  const [showGuardado, setShowGuardado] = useState(false);
   const [cantidades, setCantidades] = useState(Array(platos.length).fill(1));
-  const [showBebidas, setShowBebidas] = useState(false);
   const [bebidaSeleccionada, setBebidaSeleccionada] = useState(null);
-  const [showEntradas, setShowEntradas] = useState(false);
   const [entradaSeleccionada, setEntradaSeleccionada] = useState(null);
-  const [showPostres, setShowPostres] = useState(false);
   const [postreSeleccionado, setPostreSeleccionado] = useState(null);
   const [modalTipo, setModalTipo] = useState(null);
   const [modalSeleccion, setModalSeleccion] = useState(null);
-  const [showResumenModal, setShowResumenModal] = useState(false);
-  const [resumenLoading, setResumenLoading] = useState(false);
   const [errorPedido, setErrorPedido] = useState('');
 
   const handleAgregar = (idx, event) => {
@@ -547,7 +541,6 @@ function ClienteMenu({ onBack, onFinalizar }) {
 
   const handleAgregarBebida = (bebida, event) => {
     setBebidaSeleccionada(bebida);
-    setShowBebidas(false);
     
     // Crear pestañita emergente
     if (event) {
@@ -571,7 +564,6 @@ function ClienteMenu({ onBack, onFinalizar }) {
 
   const handleAgregarEntrada = (entrada, event) => {
     setEntradaSeleccionada(entrada);
-    setShowEntradas(false);
     
     // Crear pestañita emergente
     if (event) {
@@ -595,7 +587,6 @@ function ClienteMenu({ onBack, onFinalizar }) {
 
   const handleAgregarPostre = (postre, event) => {
     setPostreSeleccionado(postre);
-    setShowPostres(false);
     
     // Crear pestañita emergente
     if (event) {
