@@ -72,50 +72,6 @@ const bebidas = [
   { nombre: 'Vino blanco', botella: 45 },
 ];
 
-const pedidosIniciales = [
-  {
-    id: 1,
-    mesa: 5,
-    plato: 'Tacacho con Cecina',
-    img: cecinasImg,
-    detalles: 'Sin cebolla. Poco picante.',
-    urgente: false,
-    hora: Date.now() - 120000,
-    estado: 'pendiente',
-  },
-  {
-    id: 2,
-    mesa: 3,
-    plato: 'Ceviche',
-    img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
-    detalles: 'Sin ají. Con camote extra.',
-    urgente: true,
-    hora: Date.now() - 60000,
-    estado: 'pendiente',
-  },
-  {
-    id: 3,
-    mesa: 8,
-    plato: 'Lomo Saltado',
-    img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80',
-    detalles: 'Sin arroz. Extra salsa.',
-    urgente: false,
-    hora: Date.now() - 30000,
-    estado: 'pendiente',
-  },
-];
-
-const nuevoPedido = {
-  id: 4,
-  mesa: 2,
-  plato: 'Arroz Chaufa',
-  img: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80',
-  detalles: 'Sin huevo. Con salsa de soya extra.',
-  urgente: true,
-  hora: Date.now(),
-  estado: 'pendiente',
-};
-
 const insumosBase = [
   { nombre: 'Arroz', unidad: 'kg', cantidad: 10.0, min: 10, precio: 3.2, uso: 1.0 }, // rojo y en predicción
   { nombre: 'Aceite', unidad: 'L', cantidad: 2.2, min: 3, precio: 8.5, uso: 0.7 }, // rojo
