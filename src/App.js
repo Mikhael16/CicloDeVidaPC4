@@ -95,22 +95,6 @@ const usoSemanal = (insumo) => {
   }));
 };
 
-function AnimatedContainer({ children }) {
-  return (
-    <div style={{
-      animation: 'fadeSlideIn 0.5s',
-      minHeight: '100vh',
-      width: '100vw',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      background: '#f8fafc',
-    }}>
-      {children}
-    </div>
-  );
-}
-
 function Login({ onLogin, onForgot, onCliente }) {
   const [role, setRole] = useState('cocinero');
   const [usuario, setUsuario] = useState('');
@@ -323,7 +307,7 @@ function Cocinero({ onShowInfo }) {
       <div style={{padding:'0 16px',width:'100%',maxWidth:320,margin:'0 auto'}}>
         <div style={{display:'flex',alignItems:'center',gap:8,margin:'10px 0'}}>
           <div style={{background:'#f1f5f9',borderRadius:16,padding:'8px 12px',flex:1,display:'flex',alignItems:'center',gap:8}}>
-            <span style={{fontSize:'1.2rem'}}>🔍</span>
+            <span style={{fontSize:'1.2rem'}}>��</span>
             <input style={{border:'none',background:'transparent',outline:'none',fontSize:'1rem',flex:1}} placeholder="Filtrar por mesa" value={filtro} onChange={e=>setFiltro(e.target.value)} />
           </div>
         </div>
@@ -487,10 +471,10 @@ function Cliente({ goBack }) {
       <div className="role-card">
         <h2>Menú del restaurante</h2>
         <ul className="menu-list">
-          <li>Pizza Margarita 🍕</li>
-          <li>Ensalada César 🥗</li>
-          <li>Hamburguesa Clásica 🍔</li>
-          <li>Pasta Alfredo 🍝</li>
+          <li>Pizza Margarita ��</li>
+          <li>Ensalada César ��</li>
+          <li>Hamburguesa Clásica ��</li>
+          <li>Pasta Alfredo ��</li>
           <li>Postre del día 🍰</li>
         </ul>
         <div className="role-img-placeholder">🧾</div>
@@ -537,75 +521,6 @@ function ClienteMenu({ onBack, onFinalizar }) {
     const nuevas = [...cantidades];
     nuevas[idx] = Math.max(1, val);
     setCantidades(nuevas);
-  };
-
-  const handleAgregarBebida = (bebida, event) => {
-    setBebidaSeleccionada(bebida);
-    
-    // Crear pestañita emergente
-    if (event) {
-      const button = event.currentTarget;
-      const rect = button.getBoundingClientRect();
-      const pestañita = document.createElement('div');
-      pestañita.className = 'pestañita-confirmacion';
-      pestañita.textContent = '¡Agregado!';
-      pestañita.style.left = `${rect.left + rect.width/2 - 30}px`;
-      pestañita.style.top = `${rect.top - 40}px`;
-      
-      document.body.appendChild(pestañita);
-      
-      setTimeout(() => {
-        if (pestañita.parentNode) {
-          pestañita.parentNode.removeChild(pestañita);
-        }
-      }, 1500);
-    }
-  };
-
-  const handleAgregarEntrada = (entrada, event) => {
-    setEntradaSeleccionada(entrada);
-    
-    // Crear pestañita emergente
-    if (event) {
-      const button = event.currentTarget;
-      const rect = button.getBoundingClientRect();
-      const pestañita = document.createElement('div');
-      pestañita.className = 'pestañita-confirmacion';
-      pestañita.textContent = '¡Agregado!';
-      pestañita.style.left = `${rect.left + rect.width/2 - 30}px`;
-      pestañita.style.top = `${rect.top - 40}px`;
-      
-      document.body.appendChild(pestañita);
-      
-      setTimeout(() => {
-        if (pestañita.parentNode) {
-          pestañita.parentNode.removeChild(pestañita);
-        }
-      }, 1500);
-    }
-  };
-
-  const handleAgregarPostre = (postre, event) => {
-    setPostreSeleccionado(postre);
-    
-    // Crear pestañita emergente
-    if (event) {
-      const button = event.currentTarget;
-      const rect = button.getBoundingClientRect();
-      const pestañita = document.createElement('div');
-      pestañita.className = 'pestañita-confirmacion';
-      pestañita.textContent = '¡Agregado!';
-      pestañita.style.left = `${rect.left + rect.width/2 - 30}px`;
-      pestañita.style.top = `${rect.top - 40}px`;
-      
-      document.body.appendChild(pestañita);
-      
-      setTimeout(() => {
-        if (pestañita.parentNode) {
-          pestañita.parentNode.removeChild(pestañita);
-        }
-      }, 1500);
-    }
   };
 
   const handleFinalizar = () => {
@@ -806,7 +721,7 @@ function ClienteResumen({ pedido, onBack, onProceder }) {
 function App() {
   const [screen, setScreen] = useState('login');
   const [pedido, setPedido] = useState(null);
-  const [history, setHistory] = useState([]);
+  const [_history, setHistory] = useState([]);
   const [showInfoCocinero, setShowInfoCocinero] = useState(false);
   const [showInfoGerente, setShowInfoGerente] = useState(false);
 
@@ -824,105 +739,105 @@ function App() {
     });
   };
 
-  // Helper para renderizar el recuadro con header y contenido
-  const renderCard = (title, ContentComponent, props = {}, extraHeader = null) => (
-    <div className="app-bg">
-      <div className="app-card">
-        <div className="app-card-header">
-          <button className="back-icon-btn" onClick={goBack} aria-label="Volver">←</button>
-          <span className="app-card-title">{title}</span>
-          {extraHeader}
-        </div>
-        <div className="app-card-content">
-          <ContentComponent {...props} />
+    // Helper para renderizar el recuadro con header y contenido
+    const renderCard = (title, ContentComponent, props = {}, extraHeader = null) => (
+      <div className="app-bg">
+        <div className="app-card">
+          <div className="app-card-header">
+            <button className="back-icon-btn" onClick={goBack} aria-label="Volver">←</button>
+            <span className="app-card-title">{title}</span>
+            {extraHeader}
+          </div>
+          <div className="app-card-content">
+            <ContentComponent {...props} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-
-  return (
-    <>
-      {screen === 'login' && <Login onLogin={role => goTo(role)} onForgot={() => goTo('forgot')} onCliente={() => goTo('clienteMenu')} />}
-      {screen === 'forgot' && renderCard('Recuperar contraseña', ForgotPassword, { onBack: goBack })}
-      {screen === 'cocinero' && renderCard(
-        'Pedidos Pendientes',
-        props => <Cocinero {...props} onShowInfo={() => setShowInfoCocinero(true)} />, 
-        { goBack },
-        <button
-          className="back-icon-btn"
-          style={{ margin: '8px 12px 8px 0' }}
-          onClick={() => setShowInfoCocinero(true)}
-          aria-label="Ver diagramas"
-        >i</button>
-      )}
-      {screen === 'gerente' && renderCard(
-        'Gestión de Insumos',
-        props => <Gerente {...props} onShowInfo={() => setShowInfoGerente(true)} />, 
-        { goBack },
-        <button
-          className="back-icon-btn"
-          style={{ margin: '8px 12px 8px 0' }}
-          onClick={() => setShowInfoGerente(true)}
-          aria-label="Ver diagramas"
-        >i</button>
-      )}
-      {screen === 'cliente' && renderCard('Menú del Restaurante', Cliente, { goBack })}
-      {screen === 'clienteMenu' && renderCard('Menú del Restaurante', ClienteMenu, { onBack: goBack, onFinalizar: pedido => { setPedido(pedido); goTo('clienteResumen'); } })}
-      {screen === 'clienteResumen' && pedido && renderCard('Resumen del pedido', ClienteResumen, { pedido, onBack: () => goTo('clienteMenu'), onProceder: () => goTo('login') })}
-      <InfoModal
-        open={showInfoCocinero}
-        onClose={() => setShowInfoCocinero(false)}
-        asIsTitle="Diagrama as-is"
-        asIsImg={asispedidosImg}
-        toBeTitle="Diagrama to-be"
-        toBeImg={tobepedidosImg}
-      />
-      <InfoModal
-        open={showInfoGerente}
-        onClose={() => setShowInfoGerente(false)}
-        asIsTitle="Diagrama as-is"
-        asIsImg={asisinventarioImg}
-        toBeTitle="Diagrama to-be"
-        toBeImg={tobeinventarioImg}
-      />
-    </>
-  );
-}
-
-// Animación global
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.back-btn {
-  position: fixed;
-  top: 18px;
-  left: 12px;
-  z-index: 100;
-  background: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.5rem;
-  color: #2563eb;
-  box-shadow: 0 2px 8px rgba(30,41,59,0.10);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.back-btn:hover {
-  background: #f1f5f9;
-}
-@keyframes progressBar {
-  from { width: 0; }
-  to { width: 100%; }
-}
-`;
-document.head.appendChild(style);
-
-export default App;
+    );
+  
+    return (
+      <>
+        {screen === 'login' && <Login onLogin={role => goTo(role)} onForgot={() => goTo('forgot')} onCliente={() => goTo('clienteMenu')} />}
+        {screen === 'forgot' && renderCard('Recuperar contraseña', ForgotPassword, { onBack: goBack })}
+        {screen === 'cocinero' && renderCard(
+          'Pedidos Pendientes',
+          props => <Cocinero {...props} onShowInfo={() => setShowInfoCocinero(true)} />, 
+          { goBack },
+          <button
+            className="back-icon-btn"
+            style={{ margin: '8px 12px 8px 0' }}
+            onClick={() => setShowInfoCocinero(true)}
+            aria-label="Ver diagramas"
+          >i</button>
+        )}
+        {screen === 'gerente' && renderCard(
+          'Gestión de Insumos',
+          props => <Gerente {...props} onShowInfo={() => setShowInfoGerente(true)} />, 
+          { goBack },
+          <button
+            className="back-icon-btn"
+            style={{ margin: '8px 12px 8px 0' }}
+            onClick={() => setShowInfoGerente(true)}
+            aria-label="Ver diagramas"
+          >i</button>
+        )}
+        {screen === 'cliente' && renderCard('Menú del Restaurante', Cliente, { goBack })}
+        {screen === 'clienteMenu' && renderCard('Menú del Restaurante', ClienteMenu, { onBack: goBack, onFinalizar: pedido => { setPedido(pedido); goTo('clienteResumen'); } })}
+        {screen === 'clienteResumen' && pedido && renderCard('Resumen del pedido', ClienteResumen, { pedido, onBack: () => goTo('clienteMenu'), onProceder: () => goTo('login') })}
+        <InfoModal
+          open={showInfoCocinero}
+          onClose={() => setShowInfoCocinero(false)}
+          asIsTitle="Diagrama as-is"
+          asIsImg={asispedidosImg}
+          toBeTitle="Diagrama to-be"
+          toBeImg={tobepedidosImg}
+        />
+        <InfoModal
+          open={showInfoGerente}
+          onClose={() => setShowInfoGerente(false)}
+          asIsTitle="Diagrama as-is"
+          asIsImg={asisinventarioImg}
+          toBeTitle="Diagrama to-be"
+          toBeImg={tobeinventarioImg}
+        />
+      </>
+    );
+  }
+  
+  // Animación global
+  const style = document.createElement('style');
+  style.innerHTML = `
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .back-btn {
+    position: fixed;
+    top: 18px;
+    left: 12px;
+    z-index: 100;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    color: #2563eb;
+    box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .back-btn:hover {
+    background: #f1f5f9;
+  }
+  @keyframes progressBar {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  `;
+  document.head.appendChild(style);
+  
+  export default App;
